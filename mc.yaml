@@ -1,0 +1,13 @@
+---
+base: fedora:36
+install:
+ - arm-none-eabi-gcc-cs
+ - arm-none-eabi-gcc-cs-c++
+ - arm-none-eabi-newlib
+ - cmake
+ - gcc
+ - gcc-c++
+ - git
+ - libstdc++-devel
+ - make
+---
