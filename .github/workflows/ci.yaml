@@ -1,0 +1,38 @@
+name: CI
+
+
+on:
+  push:
+  pull_request:
+
+
+jobs:
+  C:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 30
+
+    steps:
+
+    # Checks-out your repository under $GITHUB_WORKSPACE
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+
+    - name: Build
+      run: npx --package mini-cross mc --no-tty _ make rebuild-c
+
+
+  CXX:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 30
+
+    steps:
+
+    # Checks-out your repository under $GITHUB_WORKSPACE
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+
+    - name: Build
+      run: npx --package mini-cross mc --no-tty _ make rebuild-c++
+
