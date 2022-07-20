@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.22)
 
 # initialize pico-sdk from submodule
 # note: this must happen before project()
@@ -17,22 +17,27 @@ target_sources(
 		"${CMAKE_CURRENT_LIST_DIR}/blink.c++"
 )
 
+set(	"CXX_COMPILE_OPTIONS"
+
+	-std=c++20
+
+	-Wall
+	-Wextra
+	-Werror
+	-Wpedantic
+
+	-Wnon-virtual-dtor
+	-Wcast-align
+	-Wunused
+	-Woverloaded-virtual
+	-Wdouble-promotion
+	-Wformat=2
+)
+
 set_source_files_properties(
 	"${CMAKE_CURRENT_LIST_DIR}/blink.c++"
-	PROPERTIES COMPILE_FLAGS
-		-std=c++20
-		
-		-Wall
-		-Wextra
-		-Werror
-		-Wpedantic
-
-		-Wnon-virtual-dtor
-		-Wcast-align
-		-Wunused
-		-Woverloaded-virtual
-		-Wdouble-promotion
-		-Wformat=2
+	PROPERTIES COMPILE_OPTIONS
+		"${CXX_COMPILE_OPTIONS}"
 )
 
 # Add pico_stdlib library which aggregates commonly used features
