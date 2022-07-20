@@ -9,7 +9,31 @@ project("blink.c++")
 # initialize the Raspberry Pi Pico SDK
 pico_sdk_init()
 
-add_executable("${PROJECT_NAME}" "blink.c++")
+add_executable("${PROJECT_NAME}" "")
+
+target_sources(
+	"${PROJECT_NAME}"
+	PRIVATE
+		"${CMAKE_CURRENT_LIST_DIR}/blink.c++"
+)
+
+set_source_files_properties(
+	"${CMAKE_CURRENT_LIST_DIR}/blink.c++"
+	PROPERTIES COMPILE_FLAGS
+		-std=c++20
+		
+		-Wall
+		-Wextra
+		-Werror
+		-Wpedantic
+
+		-Wnon-virtual-dtor
+		-Wcast-align
+		-Wunused
+		-Woverloaded-virtual
+		-Wdouble-promotion
+		-Wformat=2
+)
 
 # Add pico_stdlib library which aggregates commonly used features
 target_link_libraries("${PROJECT_NAME}" pico_stdlib)
